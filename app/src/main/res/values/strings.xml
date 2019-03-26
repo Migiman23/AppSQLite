@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">SQLitePrueba1</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="Menu">Menu principal</string>
+
+    <string name="Registrar">Registrar</string>
+    <string name="Consultar">Administrar DB</string>
+    <string name="ConsulListaSpinner">ConsulListaSpinner</string>
+    <string name="ConsulListview">ConsulListview</string>
+
+
+    <string name="FormRegistro">Formulario de registro de usuario</string>
+    <string name="Add_id">Ingresar id</string>
+    <string name="Add_Nombre">Ingresar nombre</string>
+    <string name="Add_Telefono">Ingresar telefono</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="Cancelar">Cancelar</string>
+
+    <string name="AdminDB">Administrar base de datos</string>
+    <string name="EliminarDB">Eliminar</string>
+    <string name="ModificarDB">Modificar</string>
+    <string name="BuscarUser">Buscar</string>
+    <string name="Nombre">Nombre</string>
+    <string name="Telefono">Telefono</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
