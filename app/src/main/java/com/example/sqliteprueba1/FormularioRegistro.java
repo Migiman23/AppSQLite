@@ -61,14 +61,14 @@ public class FormularioRegistro extends Fragment {
         try {
 
             ContentValues Values = new ContentValues();
-
+                            //Nombre del campo : String  && contenido del campo en pantalla
             Values.put(Constantes.CAMPO_ID,id.getText().toString());
             Values.put(Constantes.CAMPO_NOMBRE, nombre.getText().toString());
             Values.put(Constantes.CAMPO_TELEFONO, tel.getText().toString());
 
             long idResult = db.insert(Constantes.TABLA_USUARIOS, Constantes.CAMPO_ID, Values);
 
-            Toast.makeText(getContext(), "Id registro:" + idResult, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Id registro:" + idResult, Toast.LENGTH_SHORT).show();//Regresa el id del registro
         }catch(SQLException e){
             Toast.makeText(getContext(), "Error:" +e.toString(), Toast.LENGTH_SHORT).show();
         }
