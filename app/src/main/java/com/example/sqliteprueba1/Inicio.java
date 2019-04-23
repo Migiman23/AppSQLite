@@ -47,6 +47,16 @@ public class Inicio extends Fragment {
                         .commit();
             }
         });
+        Spinner.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                ConsultaSpinner fr=new ConsultaSpinner();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.Cont_Main,fr)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         ListView.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {

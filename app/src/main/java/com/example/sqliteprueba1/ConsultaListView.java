@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 public class ConsultaListView extends Fragment {
 
-    ListView Listview;
-    ArrayList<String>  ListaDatos;
-    ArrayList<Usuario>  ListaUsuarios;
+    ListView ListviewPer;
+    ArrayList<String>  ListaUsuarios;
+    ArrayList<Usuario> ListaDatosUsuarios;
     ConexionSQLite conn;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,51 +31,49 @@ public class ConsultaListView extends Fragment {
 
         conn = new ConexionSQLite(getContext(),"db_users",null,1);
 
-        Listview=Vista.findViewById(R.id.ListaUsuarios);
+        ListviewPer=Vista.findViewById(R.id.ListaUsuarios);
 
-            ConsultaPErsonas();
+            ConsultaPersonas();
 
-        ArrayAdapter <String> adaptador=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,ListaDatos);
-        Listview.setAdapter(adaptador);
-        Listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+        ArrayAdapter <String> adaptador=new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,ListaUsuarios);
+        ListviewPer.setAdapter(adaptador);
+
+        ListviewPer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String Datid="id: "+ListaUsuarios.get(position).getId()+"\n";
-                       Datid+="Nombre: "+ListaUsuarios.get(position).getNombre()+"\n";
-                       Datid+="Telefono: "+ListaUsuarios.get(position).getTelefono()+"\n";
+                String Datid="id: "+ListaDatosUsuarios.get(position).getId()+"\n";
+                       Datid+="Nombre: "+ListaDatosUsuarios.get(position).getNombre()+"\n";
+                       Datid+="Telefono: "+ListaDatosUsuarios.get(position).getTelefono()+"\n";
 
                 Toast.makeText(getContext(),Datid,Toast.LENGTH_LONG).show();
             }
         });
-
         return Vista;
     }
 
-    private void ConsultaPErsonas(){
+    private void ConsultaPersonas(){
         SQLiteDatabase db=conn.getReadableDatabase();
 
-        Usuario usuario;
-        ListaUsuarios= new ArrayList<>();
-        Cursor cursor= db.rawQuery("SELECT * FROM "+Constantes.TABLA_USUARIOS,null);
+        Usuario persona;
+        ListaDatosUsuarios= new ArrayList<>();
+        Cursor cursor= db.rawQuery("SELECT * FROM "+Constantes.TABLA_USUARIOS+" ORDER BY "+Constantes.CAMPO_ID,null);
 
         while(cursor.moveToNext()){
-            usuario=new Usuario();
-            usuario.setId(cursor.getInt(0));
-            usuario.setNombre(cursor.getString(1));
-            usuario.setTelefono(cursor.getString(2));
 
-            ListaUsuarios.add(usuario);
+            persona=new Usuario();
+
+            persona.setId(cursor.getInt(0));
+            persona.setNombre(cursor.getString(1));
+            persona.setTelefono(cursor.getString(2));
+
+            ListaDatosUsuarios.add(persona);
         }
-
-      //  db.close();
         ObtenerLista();
     }
     private void ObtenerLista(){
+        ListaUsuarios =new ArrayList<>();
 
-        ListaDatos =new ArrayList<>();
-
-        for(int i=0;i<ListaUsuarios.size();i++){
-            ListaDatos.add(ListaUsuarios.get(i).getId()+"-"+ListaUsuarios.get(i).getNombre());
+        for (int i=0;i<ListaDatosUsuarios.size();i++){
+            ListaUsuarios.add(ListaDatosUsuarios.get(i).getId()+"-"+ListaDatosUsuarios.get(i).getNombre()+"-"+ListaDatosUsuarios.get(i).getTelefono());
         }
     }
 }
